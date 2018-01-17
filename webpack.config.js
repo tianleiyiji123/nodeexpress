@@ -14,12 +14,24 @@ module.exports = {
 
     module:{
         rules:[
+            //css和sass打包处理
             {
                 test:/\.(scss|sass|css)$/,
                 use:[
                     'style-loader',
                     'css-loader',
                     'sass-loader'
+                ]
+            },
+            {
+                test:/\.(jpg|png|gif|jpeg)$/,
+                use:[
+                    {
+                        loader:"url-loader",
+                        options:{
+                            limit:8192
+                        }
+                    }
                 ]
             }
         ]
