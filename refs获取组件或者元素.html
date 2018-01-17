@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>refs获取组件或者元素</title>
+</head>
+<body>
+
+<div id="app">
+    <div ref="dv"></div>
+    <my ref="my"></my>
+    <input type="text" v-model="test">
+    <p>{{test}}</p>
+</div>
+
+</body>
+<script type="text/javascript" src="node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    <!--父组件传递给子组件-->
+    var app = new Vue({
+        el: "#app",
+        data:{
+            test:""
+        },
+        mounted:function () {
+            console.log(this.$refs.dv) //获取到元素
+            console.log(this.$refs.my) //获取到组件
+        },
+        updated:function () {
+          console.log("视图已经变化了!!!")
+        },
+        components : {
+            my : {
+                template: `<a>sss</a>`
+            }
+        }
+    })
+    console.log(app.$el)
+</script>
+</html>

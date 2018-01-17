@@ -1,0 +1,1 @@
+webpackJsonp([0],[,function(e,c,o){"use strict";Object.defineProperty(c,"__esModule",{value:!0});var r=o(0);const s=o.n(r)()("#my-webpack").find("li");s.filter(":odd").css("color","blue"),s.filter(":even").css("color","red")}],[1]);

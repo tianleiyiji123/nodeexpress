@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>helloworld</title>
+    <style>
+        .imgbox{
+            width: 300px;
+            height: 300px;
+        }
+        .imgbox img{
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+<div id="app">{{ msg }}
+    <button v-on:click="isLogin">点击我</button>
+
+    <div v-bind:class="{imgbox : true}" v-img="val.url" v-for="val in imgs"></div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/axios/dist/axios.js"></script>
+<script src="node_modules/qs/dist/qs.js"></script>
+<script>
+    axios.defaults.baseURL = "http://app.medi-plus.cn/WebService/Business/MedicalBookingService.asmx/";
+    //    axios.defaults.headers.common['Content-Type'] = 'text/plain'
+
+    Vue.directive("img",{
+        inserted: function (el, binding) {
+            var color = Math.floor(Math.random() * 1000000);
+            el.style.backgroundColor = "#" + color;
+
+
+            setTimeout(function () {
+                var img = new Image();
+                img.src = binding.value;
+                img.onload = function () {
+                    el.style.backgroundImage = 'url(' + binding.value + ')'
+                }
+            }, 500)
+
+
+        }
+    });
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            msg: "Hello World",
+
+            imgs: [{
+                url: "images/img-1.jpg"
+            },
+                {
+                    url: "images/img-2.jpg"
+                },
+                {
+                    url: "images/img-3.jpg"
+                }]
+        },
+        methods: {
+            isLogin: function () {
+                alert(123)
+//                axios.post("UserService.Login", {
+//                    userName: "王雷",
+//                    passWord: "123456"
+//                })
+//                    .then(function (response) {
+//                        console.log(response)
+//                    })
+//                    .catch(function (error) {
+//                        console.log(error)
+//                    })
+                axios({
+                    method: "post",
+                    url: "UserService.Login",
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    data: {
+                        userName: "王雷",
+                        passWord: "123456"
+                    }
+                })
+                    .then(function (response) {
+                        console.log(response)
+                    })
+                    .catch(function (error) {
+                        console.log(error)
+                    })
+            }
+        },
+//        directives: {
+//            img: {
+//                inserted: function (el, binding) {
+//                    var color = Math.floor(Math.random() * 1000000);
+//                    el.style.backgroundColor = "#" + color;
+//
+//
+//                    setTimeout(function () {
+//                        var img = new Image();
+//                        img.src = binding.value;
+//                        img.onload = function () {
+//                            el.style.backgroundImage = 'url('+ binding.value +')'
+//                        }
+//                    },500)
+//
+//
+//                }
+//            }
+//        }
+    });
+
+</script>
+</body>
+</html>

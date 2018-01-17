@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component组件学习</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <my-component></my-component>
+    <ul>
+        <li is="my-li"></li>
+    </ul>
+</div>
+
+<script type="text/javascript" src="node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    var app = new Vue({
+        el: "#app",
+        components: {
+            "my-component": {
+                template: '<div>这是一个内部组件名字叫做:<p v-bind:class="{red:isBool,blue:!isBool}" @click="changeColor">{{msg}}</p></div>',
+                data: function () {
+                    return {
+                        msg: "第一个组件",
+                        isBool: true
+                    }
+                },
+                methods: {
+                    changeColor: function () {
+                        this.isBool = !this.isBool;
+                    }
+                }
+            },
+//            测试li是否通过
+            "my-li":{
+                data:function () {
+                  return {
+                      lists:[
+                          {"url":"http://www.baidu.com"},
+                          {"url":"http://www.baidu.com"},
+                          {"url":"http://www.baidu.com"},
+                          {"url":"http://www.baidu.com"},
+                      ]
+                  }
+                },
+                template:'<div><li>这是列表1</li><li>这是列表2</li><li>这是列表3</li></div>'
+
+
+            }
+        }
+
+    })
+</script>
+
+</body>
+</html>

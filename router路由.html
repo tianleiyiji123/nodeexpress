@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>router路由学习</title>
+</head>
+<body>
+<div id="app">
+
+    <router-link to="/home/tab1">首页</router-link>
+    <router-link to="/login">登录页</router-link>
+
+    <router-view></router-view>
+</div>
+
+</body>
+<script type="text/javascript" src="node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript" src="node_modules/vue-router/dist/vue-router.js"></script>
+<script type="text/javascript">
+//    <!--定义组件1-->
+    const Home = Vue.component('home',{
+        template:`<h1><router-link to="/home/tab1">tab1</router-link><router-link to="/home/tab2">tab2</router-link><router-view></router-view></h1>`
+    });
+//    定义组件2
+    const Login = Vue.component('login',{
+        template:`<h1>这是登录页</h1>`
+    });
+//    组件1的子模板1
+    const Tab1 = {
+        template:`<h2>这是首页子模板1</h2>`
+    };
+//    组件1的子模板2
+    const Tab2 = {
+    template:`<h2>这是首页子模板2</h2>`
+};
+//      定义路由规则，创建路由对象
+    const router = new VueRouter({
+        mode:'history',
+        routes:[
+            {
+                path:'/',
+                redirect:'/home'
+            },
+            {
+                path:'/home',
+                component:Home,
+                children:[{
+                    path:'tab1',
+                    component:Tab1
+                },{
+                    path:'tab2',
+                    component:Tab2
+                }]
+            },
+            {
+                path:'/login/:id',
+                component:Login
+            }
+        ]
+    });
+
+
+
+    var app = new Vue({
+        el: "#app",
+        router:router,
+        mounted:function () {
+            alert(this.$route.params.id)
+        }
+    })
+</script>
+</html>

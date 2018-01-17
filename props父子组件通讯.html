@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>props</title>
+</head>
+<body>
+
+<div id="app1">
+    <!--父组件传递值个子组件-->
+    <!--联动v-binding修改子组件-->
+    <input type="text" v-model="parentval">
+    <child1 v-bind:child1-val="parentval"></child1>
+    <child2 child2-val="这是第二个组件"></child2>
+</div>
+
+<div id="app2">
+
+</div>
+
+
+</body>
+<script type="text/javascript" src="node_modules/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    <!--父组件传递给子组件-->
+    var app1 = new Vue({
+        el: "#app1",
+        data:{
+            parentval:""
+        },
+        components: {
+            child1: {
+                data:function () {
+                  return {
+
+                  }
+                },
+                props: ["child1Val"],
+                template: '<p>{{child1Val}}</p>'
+            },
+            child2:{
+                props:["child2Val"],
+                template:'<p>{{child2Val}}</p>'
+
+            }
+
+        }
+    })
+</script>
+</html>

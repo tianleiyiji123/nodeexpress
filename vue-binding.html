@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="text" id="txt" />
+<span id="sp"></span>
+<script type="text/javascript">
+    var txt = document.getElementById("txt");
+    var sp = document.getElementById("sp");
+    var obj = {};
+    Object.defineProperty(obj,'msg',{
+        set: function (newVal) {
+            console.log(newVal);
+            txt.value = newVal;
+            sp.innerText = newVal;
+        }
+    })
+    txt.addEventListener("keyup",function (event) {
+        obj.msg = event.target.value;
+
+    },true)
+</script>
+</body>
+</html>
