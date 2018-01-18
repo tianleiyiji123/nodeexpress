@@ -1,0 +1,38 @@
+.css-loader-test{
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    position: relative;
+}
+.css-loader-test .clt-inside{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -25px 0 0 -25px;
+}
+.url-loader-test ul li{
+    width: 580px;
+    height: 329px;
+    display: block;
+}
+.img-1{
+    width: 580px;
+    height: 329px;
+    display: block;
+    background: url(276054eabe36b4b2c231ea31c604c3eb.jpg) no-repeat;
+}
+.img-2{
+    width: 580px;
+    height: 329px;
+    display: block;
+    background: url(6b0313754c37b7a83f648fc092eb882a.jpg) no-repeat;
+}
+.img-3{
+    width: 580px;
+    height: 329px;
+    display: block;
+    background: url(d7881008ca842e330141bbe5eb3fc89d.jpg) no-repeat;
+}

@@ -1,6 +1,6 @@
 import $ from 'jquery';
 import '../../css/webpackconfig.css';
-import '../../scss/webpack-sass-test.scss';
+// import '../../scss/webpack-sass-test.scss';
 
 const $mypack = $("#my-webpack").find("li");
 

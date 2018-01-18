@@ -2,6 +2,9 @@ var path = require('path');
 var webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var extractCSS = new ExtractTextPlugin('haha.css');
+// let extractSaSS = new ExtractTextPlugin('scss/[name].scss');
 module.exports = {
     entry: {
         app:path.join(__dirname, './js/webpack/index.js'),
@@ -17,11 +20,10 @@ module.exports = {
             //css和sass打包处理
             {
                 test:/\.(scss|sass|css)$/,
-                use:[
-                    'style-loader',
-                    'css-loader',
-                    'sass-loader'
-                ]
+                use:ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
             },
             {
                 test:/\.(jpg|png|gif|jpeg)$/,
@@ -62,7 +64,10 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: "vendor",
             minChunks: Infinity
-        })
+        }),
+        extractCSS,
+        // extractSaSS
+
     ]
 };
 
